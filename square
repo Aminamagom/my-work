@@ -1,0 +1,13 @@
+from astropy.time import Time
+from astropy.coordinates import solar_system_ephemeris
+from astropy.coordinates import get_body_barycentric_posvel
+from astropy import units as u
+
+# Define the date and time for which you want to calculate the position
+date_time = Time('2022-01-01 12:00:00', format='iso')
+
+# Calculate the position of Earth
+earth_pos = get_body_barycentric_posvel('earth', date_time, ephemeris='de438')
+
+# Print the position in Cartesian coordinates
+print(earth_pos.cartesian.xyz.to(u.au))
